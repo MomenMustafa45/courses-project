@@ -2,7 +2,7 @@ import { useLanguage } from "../../hooks/useLang";
 import arabicLang from "../../../public/translation/arabic/hero.json";
 import hebrewLang from "../../../public/translation/hebraw/heron.json";
 import { useAppDispatch } from "../../hooks/dispatchHooks";
-import backgroundImg from "../../assets/images/coversen.jpg";
+import backgroundImg from "../../assets/images/coversen.png";
 import Navbar from "../Navbar";
 import PrimaryButton from "../PrimaryButton";
 import { toggleModal } from "../../store/slices/modalSlice";
