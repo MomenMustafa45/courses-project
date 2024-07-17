@@ -1,9 +1,10 @@
 import { useLanguage } from "../../hooks/useLang";
-import Navbar from "../Navbar";
-import PrimaryButton from "../PrimaryButton";
 import arabicLang from "../../../public/translation/arabic/hero.json";
 import hebrewLang from "../../../public/translation/hebraw/heron.json";
 import { useAppDispatch } from "../../hooks/dispatchHooks";
+import backgroundImg from "../../assets/images/coversen.jpg";
+import Navbar from "../Navbar";
+import PrimaryButton from "../PrimaryButton";
 import { toggleModal } from "../../store/slices/modalSlice";
 
 const Hero = () => {
@@ -13,7 +14,8 @@ const Hero = () => {
 
   return (
     <section
-      className=" bg-hero-pattern h-[600px] bg-no-repeat bg-center md:bg-cover bg-[#bd867f] relative"
+      className=" h-[600px] bg-no-repeat bg-center md:bg-cover bg-[#bd867f] relative"
+      style={{ backgroundImage: `url(${backgroundImg})` }}
       id="#home"
     >
       <div className="container flex flex-col h-full">
