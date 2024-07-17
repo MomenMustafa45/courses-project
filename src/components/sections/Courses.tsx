@@ -2,6 +2,11 @@ import CourseCard from "../CourseCard";
 import arabicCourses from "../../../public/translation/arabic/courses.json";
 import hebrewCourses from "../../../public/translation/hebraw/courses.json";
 import { useLanguage } from "../../hooks/useLang";
+import courseImgOne from "../../assets/images/courseImg1.png";
+import courseImgTwo from "../../assets/images/courseImg2.png";
+import courseImgThree from "../../assets/images/courseImg3.png";
+
+const images = [courseImgOne, courseImgTwo, courseImgThree];
 
 type CourseType = {
   id: number;
@@ -26,7 +31,7 @@ const Courses = () => {
               cardTitle={course.title}
               cardDescription={course.description}
               cardDirection={index % 2 == 0 ? "left" : "right"}
-              img={course.image}
+              img={images[index]}
               btnTitle={course.btnTitle}
             />
           );
