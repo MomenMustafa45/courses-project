@@ -1,7 +1,7 @@
 import { MdPhoneIphone } from "react-icons/md";
 import { CiMail } from "react-icons/ci";
 import { HiOfficeBuilding } from "react-icons/hi";
-import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaInstagram, FaWhatsapp, FaTiktok } from "react-icons/fa";
 import wazeLogo from "../../assets/images/waze-logo.png";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../../hooks/useLang";
@@ -58,7 +58,11 @@ const Footer = () => {
               <div className="pt-1 ml-2">
                 <CiMail />
               </div>
-              <p>{lang.email}</p>
+              <p>
+                <Link to={`mailto:${lang.mail}`} target="_blank">
+                  {lang.email}
+                </Link>
+              </p>
             </li>
             <li className="flex items-start mb-4">
               <div className="pt-1 ml-2">
@@ -80,20 +84,26 @@ const Footer = () => {
             </li>
 
             <li className="w-6 h-6 mr-3">
-              <Link to="#">
+              <Link
+                to="https://www.instagram.com/senorita.academy?igsh=MW1vbmo3ZzA0c3Zobw=="
+                target="_blank"
+              >
                 <FaInstagram size={24} />
               </Link>
             </li>
 
             <li className="w-6 h-6 mr-3">
-              <Link to="#">
-                <FaTwitter size={24} />
+              <Link
+                to="https://www.tiktok.com/@eyebrows_academy?_t=8o6gSQ4MLh2&_r=1"
+                target="_blank"
+              >
+                <FaTiktok size={24} />
               </Link>
             </li>
 
             <li className="w-6 h-6 mr-3">
-              <Link to="#">
-                <FaFacebook size={24} />
+              <Link to="https://wa.me/972509011952" target="_blank">
+                <FaWhatsapp size={24} />
               </Link>
             </li>
           </ul>
