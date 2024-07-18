@@ -1,10 +1,12 @@
 {
   "username": "שם משתמש",
-  "usernamePlaceholder": "הזן את שמך",
+  "usernamePlaceholder": "הכנס את שמך",
   "phoneNumber": "מספר טלפון",
-  "phoneNumberHolder": "הזן את מספר הטלפון שלך",
+  "phoneNumberHolder": "הכנס את מספר הטלפון שלך",
   "showCourses": "הצג קורסים",
   "joinNow": "הצטרף עכשיו",
-  "email": "דוא\"ל",
-  "emailHolder": "הזן את הדוא\"ל שלך"
+  "email": "אימייל",
+  "emailHolder": "הכנס את כתובת האימייל שלך",
+  "notes": "הערות",
+  "notesHolder": "הכנס את ההערות שלך"
 }

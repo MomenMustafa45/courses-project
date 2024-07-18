@@ -16,7 +16,7 @@ const Hero = () => {
     <section
       className=" h-[600px] bg-no-repeat bg-center md:bg-cover bg-[#bd867f] relative"
       style={{ backgroundImage: `url(${backgroundImg})` }}
-      id="#home"
+      id="home"
     >
       <div className="container flex flex-col h-full">
         <Navbar />

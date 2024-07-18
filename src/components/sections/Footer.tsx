@@ -23,10 +23,10 @@ const Footer = () => {
           <h4 className="text-4xl font-bold mb-4">{lang.quickLinks}</h4>
           <ul>
             <li className="mb-3">
-              <Link to="#">{lang.linkHome}</Link>
+              <Link to="#home">{lang.linkHome}</Link>
             </li>
             <li className="mb-3">
-              <Link to="#">{lang.linkGallery}</Link>
+              <Link to="#gallery">{lang.linkGallery}</Link>
             </li>
           </ul>
         </div>
@@ -49,10 +49,15 @@ const Footer = () => {
               </Link>
             </li>
             <li className="flex items-start mb-4">
-              <div className="pt-1 ml-2">
-                <MdPhoneIphone />
-              </div>
-              <p>{lang.mobileNumber}</p>
+              <Link
+                className="flex items-start"
+                to={`tel:${lang.mobileNumber}`}
+              >
+                <div className="pt-1 ml-2">
+                  <MdPhoneIphone />
+                </div>
+                <p>{lang.mobileNumber}</p>
+              </Link>
             </li>
             <li className="flex items-start mb-4">
               <div className="pt-1 ml-2">
@@ -78,7 +83,10 @@ const Footer = () => {
 
           <ul className="flex mt-6">
             <li className="w-6 h-6 mr-3">
-              <Link to="#">
+              <Link
+                to="https://www.waze.com/live-map/directions?to=ll.32.656667%2C35.291455"
+                target="_blank"
+              >
                 <img src={wazeLogo} alt="logo" className="h-full w-full" />
               </Link>
             </li>
