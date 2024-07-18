@@ -32,6 +32,13 @@ export default function MultiSelect() {
       defaultValue={[courseOptions[1]]}
       isMulti
       options={courseOptions}
+      styles={{
+        menuList: () => ({
+          height: "200px",
+          overflowY: "scroll",
+          transition: "0.3s ease-in-out all",
+        }),
+      }}
     />
   );
 }
