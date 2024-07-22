@@ -112,13 +112,7 @@ const Gallery = () => {
           arrayOfImages={arrayOfImages}
         />
         {/* Modal */}
-        <button
-          onClick={() =>
-            setShowModalBottomLeft({ ...showModalBottomLeft, show: true })
-          }
-        >
-          show image
-        </button>
+
         {/* <!--Bottom left modal--> */}
         <ImageModal
           setShowModalBottomLeft={setShowModalBottomLeft}
