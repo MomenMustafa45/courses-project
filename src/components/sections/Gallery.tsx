@@ -13,6 +13,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { useState } from "react";
+import PrimaryButton from "../PrimaryButton";
+import GalleryModal from "../GalleryModal";
+import ImageModal from "../ImageModal";
 
 const arrayOfImages = [
   galleryImg1,
@@ -25,9 +29,22 @@ const arrayOfImages = [
 ];
 
 const Gallery = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [showModalBottomLeft, setShowModalBottomLeft] = useState({
+    show: false,
+    imgIndex: 0,
+  });
+
   return (
-    <section className="my-40" id="gallery">
+    <section className="my-20" id="gallery">
+      <div className="special-word !mb-10">
+        <h1 className="h1-special text-[50px] md:text-[100px]">معرض الصور</h1>
+        <p className="p-special">معرض الصور</p>
+      </div>
       <div className="container mx-auto">
+        <PrimaryButton classes="" onClickHandler={() => setShowModal(true)}>
+          اعرض جميع الصور
+        </PrimaryButton>
         <Swiper
           style={{
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -54,7 +71,7 @@ const Gallery = () => {
             },
           }}
         >
-          {arrayOfImages.map((img) => (
+          {arrayOfImages.map((img, index) => (
             <SwiperSlide
               key={img}
               className="h-full"
@@ -64,8 +81,20 @@ const Gallery = () => {
                 alignItems: "center",
               }}
             >
-              <div className="">
-                <img src={img} alt="" className="h-[250px] w-[auto]" />
+              <div
+                onClick={() => {
+                  setShowModalBottomLeft({
+                    ...showModalBottomLeft,
+                    show: true,
+                    imgIndex: index,
+                  });
+                }}
+              >
+                <img
+                  src={img}
+                  alt=""
+                  className="h-[250px] w-[auto] rounded-md"
+                />
               </div>
             </SwiperSlide>
           ))}
@@ -76,6 +105,28 @@ const Gallery = () => {
             <IoIosArrowBack color="#fff" size={10} />
           </div>
         </Swiper>
+        {/* Modal */}
+        <GalleryModal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          arrayOfImages={arrayOfImages}
+        />
+        {/* Modal */}
+        <button
+          onClick={() =>
+            setShowModalBottomLeft({ ...showModalBottomLeft, show: true })
+          }
+        >
+          show image
+        </button>
+        {/* <!--Bottom left modal--> */}
+        <ImageModal
+          setShowModalBottomLeft={setShowModalBottomLeft}
+          showModalBottomLeft={showModalBottomLeft.show}
+          img={arrayOfImages[showModalBottomLeft.imgIndex]}
+        />
+
+        {/* <!--Bottom left modal--> */}
       </div>
     </section>
   );
