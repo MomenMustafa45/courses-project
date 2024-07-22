@@ -11,7 +11,7 @@ import hebrewLang from "../../../public/translation/hebraw/footer.json";
 const Footer = () => {
   const lang = useLanguage(arabicLang, hebrewLang);
   return (
-    <footer className="bg-pink-default" id="footer">
+    <footer className="bg-pink-default rounded-t-3xl" id="footer">
       <div className="container flex flex-col md:flex-row-reverse gap-x-2 mx-auto items-start py-20 ">
         {/* about */}
         <div className="flex-1 mb-5 md:mb-0" data-aos="fade-up">
