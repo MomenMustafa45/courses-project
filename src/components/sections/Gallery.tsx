@@ -37,7 +37,7 @@ const Gallery = () => {
 
   return (
     <section className="my-20" id="gallery">
-      <div className="special-word !mb-10">
+      <div className="special-word !mb-10" data-aos="fade-up">
         <h1 className="h1-special text-[50px] md:text-[100px]">معرض الصور</h1>
         <p className="p-special">معرض الصور</p>
       </div>
@@ -60,7 +60,6 @@ const Gallery = () => {
             prevEl: ".swiper-button-prev",
           }}
           pagination={{ clickable: true }}
-          autoplay={{ delay: 5000 }}
           className="h-[350px]"
           breakpoints={{
             600: {
