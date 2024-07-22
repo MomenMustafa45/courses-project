@@ -48,7 +48,7 @@ const Hero = () => {
           ></path>
         </svg>
       </div>
-      <div className=" absolute w-full bottom-0 right-0">
+      <div className=" absolute w-full bottom-0 right-0 md:hidden block">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
             fill="#fff"
