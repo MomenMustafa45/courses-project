@@ -21,8 +21,12 @@ const Courses = () => {
   const lang: CourseType[] = useLanguage(arabicCourses, hebrewCourses);
 
   return (
-    <section className="my-40 " id="courses">
+    <section className="my-20 " id="courses">
       <div className="container">
+        <div className="special-word !mb-10">
+          <h1 className="h1-special text-[50px] md:text-[100px]">الكورسات</h1>
+          <p className="p-special">الكورسات</p>
+        </div>
         {/* cards */}
         {lang.map((course, index) => {
           return (
