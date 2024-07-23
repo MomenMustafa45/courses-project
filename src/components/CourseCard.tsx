@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useAppDispatch } from "../hooks/dispatchHooks";
 import { toggleModal } from "../store/slices/modalSlice";
 import PrimaryButton from "./PrimaryButton";
@@ -18,6 +19,7 @@ const CourseCard = ({
   btnTitle,
 }: CourseCardProps) => {
   const dispatch = useAppDispatch();
+  const [showAllDesc, setShowAllDesc] = useState(false);
 
   return (
     <div>
@@ -33,8 +35,18 @@ const CourseCard = ({
           <h3 className="font-bold text-xl md:text-3xl lg:text-4xl">
             {cardTitle}
           </h3>
-          <p className="text-sm my-3 md:text-base lg:my-5 lg:text-lg">
+          <p
+            className={`text-sm mt-3 md:text-base lg:my-5 lg:text-lg ${
+              showAllDesc ? "" : "line-clamp-4 md:line-clamp-3"
+            } transition-all`}
+          >
             {cardDescription}
+          </p>
+          <p
+            className="mb-3 -mt-4 font-bold cursor-pointer"
+            onClick={() => setShowAllDesc(!showAllDesc)}
+          >
+            اقرا المزيد{" "}
           </p>
           <div>
             <PrimaryButton

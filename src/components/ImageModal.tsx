@@ -29,9 +29,9 @@ const ImageModal = ({
           <TEModalContent>
             <TEModalHeader>
               {/* <!--Modal title--> */}
-              <h5 className="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200">
+              {/* <h5 className="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200">
                 ألصور
-              </h5>
+              </h5> */}
               {/* <!--Close button--> */}
               <button
                 type="button"

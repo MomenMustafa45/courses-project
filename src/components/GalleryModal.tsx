@@ -5,6 +5,8 @@ import {
   TEModalDialog,
   TEModalHeader,
 } from "tw-elements-react";
+import ImageModal from "./ImageModal";
+import { useState } from "react";
 
 type GalleryModalProps = {
   showModal: boolean;
@@ -18,6 +20,10 @@ const GalleryModal = ({
   setShowModal,
   arrayOfImages,
 }: GalleryModalProps) => {
+  const [showModalBottomLeft, setShowModalBottomLeft] = useState({
+    show: false,
+    imgIndex: 0,
+  });
   return (
     <>
       {/* Modal */}
@@ -55,10 +61,24 @@ const GalleryModal = ({
             {/* <!--Modal body--> */}
             <TEModalBody>
               <div className="h-[400px] overflow-y-scroll flex flex-wrap justify-between gap-y-4">
-                {arrayOfImages.map((img) => {
+                {arrayOfImages.map((img, index) => {
                   return (
-                    <div className="w-[48%]">
-                      <img src={img} alt="" className="w-full h-full rounded" />
+                    <div
+                      className="w-[48%]"
+                      key={img}
+                      onClick={() => {
+                        setShowModalBottomLeft({
+                          ...showModalBottomLeft,
+                          show: true,
+                          imgIndex: index,
+                        });
+                      }}
+                    >
+                      <img
+                        src={img}
+                        alt="img"
+                        className="w-full h-full rounded"
+                      />
                     </div>
                   );
                 })}
@@ -68,6 +88,11 @@ const GalleryModal = ({
         </TEModalDialog>
       </TEModal>
       {/* Modal */}
+      <ImageModal
+        setShowModalBottomLeft={setShowModalBottomLeft}
+        showModalBottomLeft={showModalBottomLeft.show}
+        img={arrayOfImages[showModalBottomLeft.imgIndex]}
+      />
     </>
   );
 };
