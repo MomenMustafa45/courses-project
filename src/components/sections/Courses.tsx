@@ -21,7 +21,7 @@ const Courses = () => {
   const lang: CourseType[] = useLanguage(arabicCourses, hebrewCourses);
 
   return (
-    <section className="my-20 " id="courses">
+    <section className="my-20 mb-10" id="courses">
       <div className="container">
         <div className="special-word !mb-10" data-aos="fade-down">
           <h1 className="h1-special text-[50px] md:text-[100px]">الكورسات</h1>
