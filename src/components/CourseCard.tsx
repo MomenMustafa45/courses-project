@@ -43,10 +43,10 @@ const CourseCard = ({
             {cardDescription}
           </p>
           <p
-            className="mb-3 -mt-4 font-bold cursor-pointer"
+            className="mb-3 mt-4 md:mt-0 font-bold cursor-pointer"
             onClick={() => setShowAllDesc(!showAllDesc)}
           >
-            اقرا المزيد{" "}
+            اقرا المزيد
           </p>
           <div>
             <PrimaryButton
