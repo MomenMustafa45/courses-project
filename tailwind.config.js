@@ -14,6 +14,7 @@ export default {
       },
       backgroundImage: {
         "hero-pattern": "url('./src/assets/images/coversen.jpg')",
+        "hero-pattern-small": "url('./src/assets/images/coverSection.png')",
       },
     },
   },
