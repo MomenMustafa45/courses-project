@@ -21,10 +21,10 @@ const Hero = () => {
       <div className="container flex flex-col h-full">
         <Navbar />
         <div
-          className=" w-3/4 md:w-1/2 flex flex-col justify-center mr-auto flex-1"
+          className=" w-3/4 md:w-1/2 flex flex-col justify-center mr-auto ml-[-40px] md:ml-0 flex-1 "
           data-aos="fade-right"
         >
-          <h1 className="text-white text-2xl md:text-4xl md:leading-[3.5rem]">
+          <h1 className="text-white text-2xl md:text-4xl md:leading-[3.5rem] font-bold">
             {lang.heroHeader}
           </h1>
           <div className="flex justify-start mt-5">

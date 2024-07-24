@@ -36,7 +36,7 @@ const Gallery = () => {
   });
 
   return (
-    <section className="my-20 mt-10" id="gallery">
+    <section className="my-14 mt-5" id="gallery">
       <div className="special-word !mb-10" data-aos="fade-up">
         <h1 className="h1-special text-[50px] md:text-[100px]">معرض الصور</h1>
         <p className="p-special">معرض الصور</p>

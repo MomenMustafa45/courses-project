@@ -1,6 +1,5 @@
 import { MdPhoneIphone } from "react-icons/md";
 import { CiMail } from "react-icons/ci";
-import { HiOfficeBuilding } from "react-icons/hi";
 import { FaInstagram, FaWhatsapp, FaTiktok } from "react-icons/fa";
 import wazeLogo from "../../assets/images/waze-logo.png";
 import { Link } from "react-router-dom";
@@ -68,12 +67,6 @@ const Footer = () => {
                   {lang.email}
                 </Link>
               </p>
-            </li>
-            <li className="flex items-start mb-4">
-              <div className="pt-1 ml-2">
-                <HiOfficeBuilding />
-              </div>
-              <p>{lang.office}</p>
             </li>
           </ul>
         </div>
