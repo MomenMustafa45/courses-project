@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAppDispatch } from "../hooks/dispatchHooks";
 import { toggleModal } from "../store/slices/modalSlice";
 import PrimaryButton from "./PrimaryButton";
+import CourseDescCard from "./CourseDescCard";
 
 interface CourseCardProps {
   cardTitle: string;
@@ -36,9 +37,7 @@ const CourseCard = ({
             {cardTitle}
           </h3>
           <p
-            className={`text-sm mt-3 md:text-base lg:my-5 lg:text-lg ${
-              showAllDesc ? "" : "line-clamp-4 md:line-clamp-3"
-            } transition-all`}
+            className={`text-sm mt-3 md:text-base lg:my-5 lg:text-lg line-clamp-4 md:line-clamp-3 transition-all zainFont`}
           >
             {cardDescription}
           </p>
@@ -66,6 +65,12 @@ const CourseCard = ({
           </div>
         </div>
       </div>
+
+      <CourseDescCard
+        showModal={showAllDesc}
+        setShowModal={setShowAllDesc}
+        description={cardDescription}
+      />
     </div>
   );
 };
