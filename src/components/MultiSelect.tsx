@@ -1,4 +1,5 @@
-import Select from "react-select";
+import { useState } from "react";
+import Select, { MultiValue } from "react-select";
 import makeAnimated from "react-select/animated";
 
 interface CourseOption {
@@ -24,21 +25,43 @@ const courseOptions: CourseOption[] = [
 
 const animatedComponents = makeAnimated();
 
-export default function MultiSelect() {
+type MultiSelectProps = {
+  selectedCoursesHandler: (selectedOptions: MultiValue<unknown>) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+};
+
+export default function MultiSelect({
+  selectedCoursesHandler,
+}: MultiSelectProps) {
+  const [isValidArr, setIsValidArr] = useState(false);
+  const handleSelectChange = (selectedOptions: MultiValue<unknown>) => {
+    selectedCoursesHandler(selectedOptions);
+    if (selectedOptions.length > 0) {
+      setIsValidArr(true);
+    } else {
+      setIsValidArr(false);
+    }
+  };
+
   return (
-    <Select
-      closeMenuOnSelect={false}
-      components={animatedComponents}
-      defaultValue={[courseOptions[1]]}
-      isMulti
-      options={courseOptions}
-      styles={{
-        menuList: () => ({
-          height: "200px",
-          overflowY: "scroll",
-          transition: "0.3s ease-in-out all",
-        }),
-      }}
-    />
+    <>
+      <Select
+        className="mt-2"
+        closeMenuOnSelect={false}
+        components={animatedComponents}
+        isMulti
+        options={courseOptions}
+        styles={{
+          menuList: () => ({
+            height: "200px",
+            overflowY: "scroll",
+            transition: "0.3s ease-in-out all",
+          }),
+        }}
+        onChange={handleSelectChange}
+        placeholder="أختر الكورسات"
+      />
+      <p>{isValidArr && "يجب ادخال كورس واحد علي الاقل"}</p>
+    </>
   );
 }
