@@ -1,10 +1,3 @@
-import galleryImg1 from "../../assets/images/galleryImg1.png";
-import galleryImg2 from "../../assets/images/galleryImg2.png";
-import galleryImg3 from "../../assets/images/galleryImg3.png";
-import galleryImg4 from "../../assets/images/galleryImg4.png";
-import galleryImg5 from "../../assets/images/galleryImg5.png";
-import galleryImg6 from "../../assets/images/galleryImg6.png";
-import galleryImg7 from "../../assets/images/galleryImg7.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -13,27 +6,36 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PrimaryButton from "../PrimaryButton";
 import GalleryModal from "../GalleryModal";
 import ImageModal from "../ImageModal";
+import axios from "axios";
 
-const arrayOfImages = [
-  galleryImg1,
-  galleryImg2,
-  galleryImg3,
-  galleryImg4,
-  galleryImg5,
-  galleryImg6,
-  galleryImg7,
-];
+export type ImageType = {
+  id: number;
+  image: string;
+};
 
 const Gallery = () => {
+  const [arrayOfImages, setArrOfImages] = useState<ImageType[] | []>([]);
   const [showModal, setShowModal] = useState(false);
   const [showModalBottomLeft, setShowModalBottomLeft] = useState({
     show: false,
     imgIndex: 0,
   });
+
+  useEffect(() => {
+    const getImages = async () => {
+      const res = await axios.get(
+        "https://senorita.besoftware.net/api/images/get-all-images"
+      );
+      const images = res.data;
+      setArrOfImages(images);
+    };
+
+    getImages();
+  }, []);
 
   return (
     <section className="my-14 mt-5" id="gallery">
@@ -72,7 +74,7 @@ const Gallery = () => {
         >
           {arrayOfImages.map((img, index) => (
             <SwiperSlide
-              key={img}
+              key={img.id}
               className="h-full"
               style={{
                 display: "flex",
@@ -90,8 +92,8 @@ const Gallery = () => {
                 }}
               >
                 <img
-                  src={img}
-                  alt=""
+                  src={`data:image/jpeg;base64,${img.image}`}
+                  alt="image"
                   className="h-[250px] w-[auto] rounded-md"
                 />
               </div>
@@ -114,8 +116,13 @@ const Gallery = () => {
 
         {/* <!--Bottom left modal--> */}
         <ImageModal
-          setShowModalBottomLeft={setShowModalBottomLeft}
-          showModalBottomLeft={showModalBottomLeft.show}
+          setShowModalBottomLeft={() =>
+            setShowModalBottomLeft({
+              ...showModalBottomLeft,
+              show: !showModalBottomLeft,
+            })
+          }
+          showModalBottomLeft={showModalBottomLeft}
           img={arrayOfImages[showModalBottomLeft.imgIndex]}
         />
 
@@ -126,3 +133,4 @@ const Gallery = () => {
 };
 
 export default Gallery;
+

@@ -32,3 +32,4 @@ export const { changeLang } = languageSlice.actions;
 export const selectLanguage = (state: RootState) => state.lang.value;
 
 export default languageSlice.reducer;
+

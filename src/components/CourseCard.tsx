@@ -5,11 +5,13 @@ import PrimaryButton from "./PrimaryButton";
 import CourseDescCard from "./CourseDescCard";
 
 interface CourseCardProps {
+  id: number;
   cardTitle: string;
   cardDescription: string;
   cardDirection: string;
   img: string;
   btnTitle: string;
+  readMore: string;
 }
 
 const CourseCard = ({
@@ -18,6 +20,7 @@ const CourseCard = ({
   cardDescription,
   cardDirection,
   btnTitle,
+  readMore,
 }: CourseCardProps) => {
   const dispatch = useAppDispatch();
   const [showAllDesc, setShowAllDesc] = useState(false);
@@ -45,7 +48,7 @@ const CourseCard = ({
             className="mb-3 mt-4 md:mt-0 font-bold cursor-pointer"
             onClick={() => setShowAllDesc(!showAllDesc)}
           >
-            اقرا المزيد
+            {readMore}
           </p>
           <div>
             <PrimaryButton
@@ -76,3 +79,4 @@ const CourseCard = ({
 };
 
 export default CourseCard;
+

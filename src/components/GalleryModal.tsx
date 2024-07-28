@@ -7,12 +7,13 @@ import {
 } from "tw-elements-react";
 import ImageModal from "./ImageModal";
 import { useState } from "react";
+import { imageType } from "../ControlPanel/misc/types";
 
 type GalleryModalProps = {
   showModal: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setShowModal: any;
-  arrayOfImages: string[];
+  arrayOfImages: imageType[];
 };
 
 const GalleryModal = ({
@@ -65,7 +66,7 @@ const GalleryModal = ({
                   return (
                     <div
                       className="w-[48%]"
-                      key={img}
+                      key={img.id}
                       onClick={() => {
                         setShowModalBottomLeft({
                           ...showModalBottomLeft,
@@ -75,7 +76,7 @@ const GalleryModal = ({
                       }}
                     >
                       <img
-                        src={img}
+                        src={`data:image/jpeg;base64,${img.image}`}
                         alt="img"
                         className="w-full h-full rounded"
                       />
@@ -89,8 +90,13 @@ const GalleryModal = ({
       </TEModal>
       {/* Modal */}
       <ImageModal
-        setShowModalBottomLeft={setShowModalBottomLeft}
-        showModalBottomLeft={showModalBottomLeft.show}
+        setShowModalBottomLeft={() =>
+          setShowModalBottomLeft({
+            ...showModalBottomLeft,
+            show: !showModalBottomLeft,
+          })
+        }
+        showModalBottomLeft={showModalBottomLeft}
         img={arrayOfImages[showModalBottomLeft.imgIndex]}
       />
     </>
@@ -98,3 +104,4 @@ const GalleryModal = ({
 };
 
 export default GalleryModal;
+

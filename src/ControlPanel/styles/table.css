@@ -1,0 +1,25 @@
+.window {
+  direction: ltr;
+}
+
+.window table {
+  direction: rtl;
+}
+
+.window::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+  direction: ltr;
+}
+
+.window::-webkit-scrollbar-track {
+  background: #55555528;
+}
+
+.window::-webkit-scrollbar-thumb {
+  background: #000;
+}
+
+.window::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}

@@ -76,10 +76,7 @@ const Footer = () => {
 
           <ul className="flex mt-6">
             <li className="w-6 h-6 mr-3">
-              <Link
-                to="https://www.waze.com/live-map/directions?to=ll.32.656667%2C35.291455"
-                target="_blank"
-              >
+              <Link to="https://waze.com/ul/hsvc52pu4p" target="_blank">
                 <img src={wazeLogo} alt="logo" className="h-full w-full" />
               </Link>
             </li>
@@ -115,3 +112,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

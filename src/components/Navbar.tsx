@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import PrimaryButton from "./PrimaryButton";
+// import PrimaryButton from "./PrimaryButton";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
-import { useAppDispatch } from "../hooks/dispatchHooks";
-import { changeLang } from "../store/slices/langSlice";
+// import { useAppDispatch } from "../hooks/dispatchHooks";
+// import { changeLang } from "../store/slices/langSlice";
 import arabicLang from "../../public/translation/arabic/navbar.json";
 import hebrewLang from "../../public/translation/hebraw/navbar.json";
 import { useLanguage } from "../hooks/useLang";
@@ -11,14 +11,14 @@ import navlogo from "../../src/assets/images/navlogo.png";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   // To define the language
   const lang = useLanguage(arabicLang, hebrewLang);
 
-  const handleChangeLang = () => {
-    dispatch(changeLang());
-  };
+  // const handleChangeLang = () => {
+  //   dispatch(changeLang());
+  // };
 
   return (
     <nav className="py-5 bg-[#bd867f]t md:bg-transparent">
@@ -37,9 +37,9 @@ const Navbar = () => {
           <li className="mr-4 font-bold text-white hover:text-pink-default transition-all">
             <Link to="#footer">{lang.contact}</Link>
           </li>
-          <li className="mr-4" onClick={handleChangeLang}>
+          {/* <li className="mr-4" onClick={handleChangeLang}>
             <PrimaryButton>{lang.btnLang}</PrimaryButton>
-          </li>
+          </li> */}
         </ul>
         <div className=" relative md:hidden">
           <div
@@ -78,9 +78,9 @@ const Navbar = () => {
             >
               <Link to="#footer">{lang.contact}</Link>
             </li>
-            <li onClick={handleChangeLang}>
+            {/* <li onClick={handleChangeLang}>
               <PrimaryButton>{lang.btnLang}</PrimaryButton>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div>
@@ -94,3 +94,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

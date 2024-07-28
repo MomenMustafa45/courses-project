@@ -7,10 +7,10 @@ import {
 } from "tw-elements-react";
 
 type ImageModalProp = {
-  showModalBottomLeft: boolean;
+  showModalBottomLeft: { show: boolean; imgIndex: number };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setShowModalBottomLeft: any;
-  img: string;
+  img: { id: number; image: string };
 };
 
 const ImageModal = ({
@@ -21,7 +21,7 @@ const ImageModal = ({
   return (
     <>
       <TEModal
-        show={showModalBottomLeft}
+        show={showModalBottomLeft.show}
         setShow={setShowModalBottomLeft}
         className="mt-5"
       >
@@ -36,7 +36,12 @@ const ImageModal = ({
               <button
                 type="button"
                 className="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
-                onClick={() => setShowModalBottomLeft(false)}
+                onClick={() =>
+                  setShowModalBottomLeft({
+                    ...showModalBottomLeft,
+                    show: false,
+                  })
+                }
                 aria-label="Close"
               >
                 <svg
@@ -59,7 +64,11 @@ const ImageModal = ({
             <TEModalBody>
               <div className="flex flex-wrap justify-between zoomInDown">
                 <div className="w-full">
-                  <img src={img} alt="" className="w-full h-full rounded" />
+                  <img
+                    src={`data:image/jpeg;base64,${img?.image}`}
+                    alt="image"
+                    className="w-full h-full rounded"
+                  />
                 </div>
               </div>
             </TEModalBody>
@@ -71,3 +80,4 @@ const ImageModal = ({
 };
 
 export default ImageModal;
+
