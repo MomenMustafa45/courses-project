@@ -7,7 +7,7 @@ import { useState } from "react";
 import arabicLang from "../../public/translation/arabic/navbar.json";
 import hebrewLang from "../../public/translation/hebraw/navbar.json";
 import { useLanguage } from "../hooks/useLang";
-import navlogo from "../../src/assets/images/navlogo.png";
+import navlogo from "../assets/images/navlogo.png";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -84,7 +84,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div>
-          <div className="w-[80px] h-[80px]">
+          <div className="w-[100px] h-[100px]">
             <img src={navlogo} alt="logo" className="w-full h-full" />
           </div>
         </div>

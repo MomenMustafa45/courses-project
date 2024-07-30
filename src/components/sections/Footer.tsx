@@ -35,7 +35,7 @@ const Footer = () => {
           <ul>
             <li className="flex items-start mb-4">
               <Link
-                to="https://www.waze.com/live-map/directions?to=ll.32.656667%2C35.291455"
+                to="https://waze.com/ul/hsvc52pu4p"
                 target="_blank"
                 className="flex items-start"
               >
@@ -75,12 +75,6 @@ const Footer = () => {
           <h4 className="text-4xl font-bold mb-4">{lang.socialLinks}</h4>
 
           <ul className="flex mt-6">
-            <li className="w-6 h-6 mr-3">
-              <Link to="https://waze.com/ul/hsvc52pu4p" target="_blank">
-                <img src={wazeLogo} alt="logo" className="h-full w-full" />
-              </Link>
-            </li>
-
             <li className="w-6 h-6 mr-3">
               <Link
                 to="https://www.instagram.com/senorita.academy?igsh=MW1vbmo3ZzA0c3Zobw=="

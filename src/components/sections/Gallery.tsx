@@ -61,7 +61,7 @@ const Gallery = () => {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
           }}
-          pagination={{ clickable: true }}
+          pagination={{ clickable: true, dynamicBullets: true }}
           className="h-[350px]"
           breakpoints={{
             600: {

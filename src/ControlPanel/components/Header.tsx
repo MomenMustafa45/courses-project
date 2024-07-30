@@ -3,18 +3,19 @@ import logoImage from "../../assets/images/navlogo.png";
 import { Link, useNavigate } from 'react-router-dom';
 import { FaBars } from "react-icons/fa";
 import { FaBarsStaggered } from "react-icons/fa6";
-import { GrLanguage, GrLogout } from "react-icons/gr";
+import { GrLogout } from "react-icons/gr";
+// import { GrLanguage, GrLogout } from "react-icons/gr";
 import { IoMdSettings } from "react-icons/io";
 import { useTranslation } from 'react-i18next';
 import "../styles/Header.css";
-import LanguageBox from './LanguageBox';
+// import LanguageBox from './LanguageBox';
 import { useMutation } from 'react-query';
 import { logout } from '../api-client';
 import { useAppContext } from '../context/AppProvider';
 
 const Header = (): React.JSX.Element => {
   const [barActive, setBarActive] = useState<boolean>(false);
-  const [langBoxShow, setLangBoxShow] = useState<boolean>(false);
+  // const [langBoxShow, setLangBoxShow] = useState<boolean>(false);
 
   const { showToast } = useAppContext();
   const translating = useTranslation("global")[0];
@@ -62,12 +63,12 @@ const Header = (): React.JSX.Element => {
             <GrLogout size={22} />
           </button>
 
-          <button className="relative text-black" onClick={() => setLangBoxShow(!langBoxShow)}>
-            <GrLanguage size={22} />
-            <div className='fixed top-[55px] right-[35px]'>
-              <LanguageBox onClose={() => setLangBoxShow(false)} visible={langBoxShow} />
-            </div>
-          </button>
+          {/*<button className="relative text-black" onClick={() => setLangBoxShow(!langBoxShow)}>*/}
+          {/*  <GrLanguage size={22} />*/}
+          {/*  <div className='fixed top-[55px] right-[35px]'>*/}
+          {/*    <LanguageBox onClose={() => setLangBoxShow(false)} visible={langBoxShow} />*/}
+          {/*  </div>*/}
+          {/*</button>*/}
 
           <button className="text-black" onClick={() => navigateTo("/settings")}>
             <IoMdSettings size={22} />

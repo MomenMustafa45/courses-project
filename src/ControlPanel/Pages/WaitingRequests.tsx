@@ -114,7 +114,6 @@ const WaitingRequests = (): React.JSX.Element => {
                         onChange={() => handleCheckboxChange(request.id)}
                         checked={selectedRequestIds.includes(request.id)}
                       />
-                      {request.id}
                     </td>
                     <td className="px-4 py-2 whitespace-nowrap">{request.fullName}</td>
                     <td className="px-4 py-2 whitespace-nowrap">
@@ -154,7 +153,10 @@ const WaitingRequests = (): React.JSX.Element => {
 
       {showModal && (
         <AddRequestModal
-          onClose={() => setShowModal(false)}
+          onClose={() => {
+            setShowModal(false)
+            setSelectedRequestIds([])
+          }}
           classes={classes}
           selectedRequests={selectedRequestIds}
           getData={getAllWaitingRequests}

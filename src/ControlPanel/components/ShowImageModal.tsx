@@ -15,7 +15,7 @@ const ShowImageModal = ({ closeModal, deleteImageFromGallery, selectedImage }: P
         <button onClick={closeModal} className="absolute top-[-30px] right-2 bg-blue-500 text-white p-2 rounded-full z-20">
           <BsX size={24} />
         </button>
-        <img src={`data:image/jpeg;base64,${selectedImage.image}`} alt="Selected Image" className="w-full h-full" />
+        <img src={`data:image/jpeg;base64,${selectedImage.image}`} alt="Selected Image" className="w-full max-h-[500px] h-auto" />
         <div className="absolute bottom-[-25px] right-1">
           <button className="flex items-center justify-center bg-red-500 rounded-full p-2">
             <BsTrash size={24} color="white" onClick={() => deleteImageFromGallery(selectedImage.id)} />

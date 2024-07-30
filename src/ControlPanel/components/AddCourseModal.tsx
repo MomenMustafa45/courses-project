@@ -85,16 +85,16 @@ const AddCourseModal = ({ onClose, getData, selectedCourse }: Props): React.JSX.
 
   const handleArabicNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let inputValue = e.target.value;
-    if (inputValue.length > 20) {
-      inputValue = inputValue.slice(0, 20);
+    if (inputValue.length > 50) {
+      inputValue = inputValue.slice(0, 50);
     }
     setArabicName(inputValue);
   };
 
   const handleHebrewNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let inputValue = e.target.value;
-    if (inputValue.length > 20) {
-      inputValue = inputValue.slice(0, 20);
+    if (inputValue.length > 50) {
+      inputValue = inputValue.slice(0, 50);
     }
     setHebrewName(inputValue);
   };

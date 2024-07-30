@@ -6,9 +6,11 @@ import { useTranslation } from 'react-i18next';
 import "../styles/table.css";
 import "../styles/RequestsButtons.css";
 import { BsTrash, BsPencil } from 'react-icons/bs';
+import { FaSearch } from 'react-icons/fa';
 import { useAppContext } from '../context/AppProvider';
 import { useMutation } from 'react-query';
 import ChangeClassRequestModal from '../components/ChangeClassRequestModal';
+import { searchText } from '../misc/helpers';
 
 
 const WaitingRequests = (): React.JSX.Element => {
@@ -19,6 +21,7 @@ const WaitingRequests = (): React.JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedClass, setSelectedClass] = useState<string | null>("");
   const [showModal, setShowModal] = useState(false);
+  const [search, setSearch] = useState<string>("")
 
   const { showToast } = useAppContext();
   const [translating, i18n] = useTranslation("global")
@@ -35,9 +38,15 @@ const WaitingRequests = (): React.JSX.Element => {
     onSettled: () => setIsLoading(false)
   });
 
+
   const filterRequests = requests.filter(request =>
+    (searchText(search, request.fullName) ||
+      searchText(search, request.phone)) &&
     (!selectedClass || request.className === selectedClass)
-  );
+  )
+  // const filterRequests = requests.filter(request =>
+  //   (!selectedClass || request.className === selectedClass)
+  // );
 
   const getAllRequests = async () => {
     setIsLoading(true);
@@ -75,22 +84,39 @@ const WaitingRequests = (): React.JSX.Element => {
 
   return (
     <div>
-      <div className="window py-2 flex-row-reverse flex items-center gap-2 px-6 my-4 overflow-x-auto">
-        <button
-          className={`px-4 py-2  whitespace-nowrap rounded-full cursor-pointer ${selectedClass === "" ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
-          onClick={() => setSelectedClass("")}
-        >
-          {translating("requests.all")}
-        </button>
-        {classes.map((className) => (
+      <div className="flex justify-between flex-row-reverse items-center py-2 px-6 my-4 gap-2">
+        <div className="window flex flex-row-reverse items-center gap-2 overflow-x-auto">
           <button
-            key={className}
-            className={`px-4 py-2 whitespace-nowrap rounded-full cursor-pointer ${selectedClass === className ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
-            onClick={() => setSelectedClass(className)}
+            className={`px-4 py-2 whitespace-nowrap rounded-full cursor-pointer ${selectedClass === "" ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+            onClick={() => setSelectedClass("")}
           >
-            {className}
+            {translating("requests.all")}
           </button>
-        ))}
+          {classes.map((className) => (
+            <button
+              key={className}
+              className={`px-4 py-2 whitespace-nowrap rounded-full cursor-pointer ${selectedClass === className ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+              onClick={() => setSelectedClass(className)}
+            >
+              {className}
+            </button>
+          ))}
+        </div>
+
+        <div className="flex items-center justify-between">
+          <div className="relative">
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search..."
+              className="pl-8 pr-4 py-2 border border-gray-300 rounded-full w-full md:w-[300px] w-[150px] focus:outline-none"
+            />
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <FaSearch className="text-gray-400" />
+            </div>
+          </div>
+        </div>
       </div>
 
       {filterRequests.length ? (
@@ -117,7 +143,6 @@ const WaitingRequests = (): React.JSX.Element => {
                         onChange={() => handleCheckboxChange(request.id)}
                         checked={selectedRequestIds.includes(request.id)}
                       />
-                      {request.id}
                     </td>
                     <td className="px-4 py-2 whitespace-nowrap">{request.fullName}</td>
                     <td className="px-4 py-2 whitespace-nowrap">

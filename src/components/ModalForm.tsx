@@ -4,10 +4,15 @@ import { toggleModal } from "../store/slices/modalSlice";
 import arabicLang from "../../public/translation/arabic/modal.json";
 import hebrawLang from "../../public/translation/hebraw/modal.json";
 import { useLanguage } from "../hooks/useLang";
-import { useForm, SubmitHandler } from "react-hook-form";
-import MultiSelect from "./MultiSelect";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-toastify";
+import makeAnimated from "react-select/animated";
+import Select from "react-select";
+import { Course } from "./sections/Courses";
+import { useState } from "react";
+
+const animatedComponents = makeAnimated();
 
 interface IFormInput {
   fullName: string;
@@ -17,17 +22,11 @@ interface IFormInput {
 }
 
 const ModalForm = () => {
+  const [selectedValues, setSelectedValues] = useState([]);
+  const courses = useAppSelector((state) => state.courses.courses);
   const showModal = useAppSelector((state) => state.showModal.value);
   const lang = useLanguage(arabicLang, hebrawLang);
   const dispatch = useAppDispatch();
-
-  let selectedCoursesArr: string[] = [];
-
-  const selectCourseHandler = (selectedCourses: string[]) => {
-    // Assuming selectedCourses is an array of objects with a 'value' property of type string
-    selectedCoursesArr = selectedCourses;
-    console.log(selectedCoursesArr);
-  };
 
   // form
   const {
@@ -35,18 +34,22 @@ const ModalForm = () => {
     handleSubmit,
     reset,
     formState: { errors },
+    control,
   } = useForm<IFormInput>();
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    console.log({ ...data, courseIds: selectedCoursesArr });
+    const selectedValuesIds = selectedValues.map((v: Course) =>
+      v.id.toString()
+    );
     await axios.post(
       "https://senorita.besoftware.net/api/request/create-waiting-request",
-      { ...data, courseIds: selectedCoursesArr }
+      { ...data, courseIds: selectedValuesIds }
     );
 
     toast("لقد تم ارسال طلبك بنجاح", { position: "top-center" });
-
+    setSelectedValues([]);
     reset();
+    dispatch(toggleModal());
   };
 
   return (
@@ -128,7 +131,38 @@ const ModalForm = () => {
                   {/* input email */}
 
                   {/* checkboxes */}
-                  <MultiSelect selectedCoursesHandler={selectCourseHandler} />
+                  <Controller
+                    name="courseIds"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        value={selectedValues}
+                        className="mt-2"
+                        closeMenuOnSelect={false}
+                        components={animatedComponents}
+                        isMulti
+                        options={courses}
+                        styles={{
+                          menuList: () => ({
+                            height: "200px",
+                            overflowY: "scroll",
+                            transition: "0.3s ease-in-out all",
+                          }),
+                        }}
+                        placeholder="أختر الكورسات"
+                        getOptionLabel={(item: Course) => item.arName}
+                        getOptionValue={(item: Course) => `${item.id}`}
+                        onChange={(e) => {
+                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                          // @ts-ignore
+                          setSelectedValues([...e]);
+                          console.log(selectedValues);
+                        }}
+                      />
+                    )}
+                  />
+                  {/* <MultiSelect selectedCoursesHandler={selectCourseHandler} /> */}
                   {/* checkboxes */}
 
                   {/* input notes */}

@@ -54,7 +54,7 @@ const CourseDescCard = ({
             </TEModalHeader>
             {/* <!--Modal body--> */}
             <TEModalBody className="max-h-[400px]">
-              <p className="zainFont">{description}</p>
+              <p style={{ whiteSpace: 'pre-wrap' }} className="zainFont">{description}</p>
             </TEModalBody>
             <TEModalFooter></TEModalFooter>
           </TEModalContent>
